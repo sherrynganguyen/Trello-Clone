@@ -1,8 +1,16 @@
 const router = require("express").Router();
+const mongoose  = require('mongoose');
 
-module.exports = (db) => {
-  router.get("/", (req,res) => {
-    res.send("hello")
+const UserModel = mongoose.model("Users")
+router.get("/login", (req,res) => {
+  UserModel.find((err,docs) => {
+    if (!err) {
+      console.log(docs)
+      res.redner("users")
+    } else {
+      res.send(err)
+    }
   })
-  return router;
-};
+})
+
+module.exports = router;

@@ -15,12 +15,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 //Connect to MongoDB database
-const db = require('./models/connect')
+const db = require('./models')
 
 const users = require('./routes/users');
 
 //Connect all the routes to our application
-app.use("/", users(db));
+app.use("/", users);
 
 app.get("/express_backend", (req,res) => {
   res.send({ express: 'backend is connected to react'})
