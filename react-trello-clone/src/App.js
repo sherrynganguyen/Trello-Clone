@@ -1,10 +1,15 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+// import logo from './logo.svg';
+// import './App.css';
+import { Typography, Paper } from '@material-ui/core';
 
-class App extends Component {
+import { Login } from './components/index';
+
+class App extends React.Component {
   state = {
-    data: null
+    data: null,
+    email: '',
+    password: ''
   };
 
   componentDidMount() {
@@ -23,12 +28,13 @@ class App extends Component {
   }
   render () {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>{this.state.data}</p>
-        </header>
-      </div>
+      <React.Fragment>
+          <Typography variant="h2" align="center">Trello-Clone</Typography>
+          <Paper elevation={6} align="center" width="30%">
+            <Login/>
+          </Paper>
+      </React.Fragment>
+
     )
   };
 }
