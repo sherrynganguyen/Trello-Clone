@@ -8,16 +8,19 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-const db = require('./db/connect')
-
+//Express Configuration
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use("/hello", (req,res) => {
-  res.send("hello world");
-})
+//Connect to MongoDB database
+const db = require('./models/connect')
+
+const users = require('./routes/users');
+
+//Connect all the routes to our application
+app.use("/", users(db));
 
 app.get("/express_backend", (req,res) => {
   res.send({ express: 'backend is connected to react'})
